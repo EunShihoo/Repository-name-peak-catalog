@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>피크마케팅 상품 카탈로그</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+  <header class="top">
+    <span class="eyebrow"><span class="dot"></span>PEAK MARKETING · 상품 안내</span>
+    <h1 class="title">피크마케팅 상품 카탈로그</h1>
+    <p class="subtitle">상품을 클릭하세요. 카테고리는 클릭하면 하위 항목으로 들어가요.</p>
+  </header>
+
+  <div class="crumb-wrap">
+    <div class="crumb-track" id="crumbTrack">
+      <div class="crumb-line"><div class="crumb-line-fill" id="crumbFill"></div></div>
+    </div>
+  </div>
+
+  <div id="grid-container"></div>
+</div>
+
+<div id="overlay"></div>
+<div class="detail-panel" id="detailPanel">
+  <button class="detail-close" id="detailClose">✕</button>
+  <div class="detail-path" id="detailPath"></div>
+  <div class="detail-name" id="detailName"></div>
+  <div class="detail-desc" id="detailDesc"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
