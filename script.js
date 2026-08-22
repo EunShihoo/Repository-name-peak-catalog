@@ -123,7 +123,7 @@ const CATALOG = [
   },
   {
     id: "interactive-content",
-    name: "인터랙티브 콘텐츠",
+    name: "심리테스트",
     children: [
       {
         id: "interactive-fortune",
