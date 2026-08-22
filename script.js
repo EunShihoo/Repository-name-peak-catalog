@@ -129,6 +129,7 @@ const CATALOG = [
         id: "interactive-fortune",
         name: "운세",
         links: [
+          { title: "오늘의 운세", url: "https://search.naver.com/search.naver?where=nv&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%98%A4%EB%8A%98%EC%9D%98+%EC%9A%B4%EC%84%B8&qdt=0&ie=utf8&query=%EC%98%A4%EB%8A%98%EC%9D%98+%EC%9A%B4%EC%84%B8&ackey=5mwpxglt" }
           // { title: "제목", url: "https://..." } 형식으로 추가하면 됩니다.
         ]
       },
