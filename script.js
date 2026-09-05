@@ -376,7 +376,7 @@ function renderGrid(){
       card.innerHTML = `
         <div class="card-name">${node.name}</div>
         <div class="card-meta">
-          <span class="card-count">${countLabel(node)}</span>
+          <span class="card-count">레퍼런스 ${node.links.length}개</span>
           <span class="card-arrow">→</span>
         </div>
       `;
