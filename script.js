@@ -9,11 +9,13 @@
       { id, name, children: [...] }
 
    2) 상품 (설명 텍스트, 클릭하면 오른쪽에 상세 패널)
-      { id, name, description: "설명 텍스트", action: "rewardSpace" | "reviewSpace" | "kakao" }
-      → action을 넣으면 상세패널 하단에 버튼이 하나 생깁니다.
-        rewardSpace / reviewSpace → 아래 LINKS의 회원가입 링크로 새 탭 이동
-        kakao → 아래 LINKS의 카카오톡 링크로 새 탭 이동 (없으면 ID 복사)
+      { id, name, description: "설명 텍스트", action: "kakao" }
+      → action: "kakao"를 넣으면 상세패널 하단에 "카카오톡으로 문의하기" 버튼이 생깁니다.
+        (아래 LINKS의 카카오톡 링크로 새 탭 이동, 없으면 ID 복사)
         action을 안 넣으면 버튼 없이 설명만 보여줍니다.
+        ※ 리워드/블로그/카페 배포는 개별 상품 버튼 대신, 카테고리 화면
+          상단에 뜨는 "리워드스페이스/review-space 가입하기" 배너로 안내합니다.
+          (아래 CATALOG의 categoryAction 필드 참고)
 
    3) 게시판 (하이퍼링크 리스트, 클릭하면 링크 목록 화면으로 이동)
       { id, name, links: [ { title, url }, ... ] }
@@ -27,42 +29,43 @@
    자동으로 반영됩니다. (VS Code에서 이 부분만 수정하면 돼요)
    ------------------------------------------------------------ */
 const LINKS = {
-  rewardSpace: "https://rewardspace.kr/", // ← 리워드스페이스 회원가입 링크 (추천인 코드 포함) 입력
-  rewardSpaceReferralId: "asisay10",
-  reviewSpace: "https://review-space.kr/r/dmstlgn", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
-  kakaoUrl: "https://open.kakao.com/o/snn5zjIi",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
-  kakaoId: "asisay10"      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
+  rewardSpace: "", // ← 리워드스페이스 회원가입 링크 (추천인 코드 포함) 입력
+  reviewSpace: "", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
+  kakaoUrl: "",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
+  kakaoId: ""      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
 };
 
 const CATALOG = [
   {
     id: "reward",
     name: "리워드",
+    categoryAction: "rewardSpace",
     children: [
       {
         id: "reward-place",
         name: "플레이스 리워드",
         children: [
-          { id: "reward-place-alpha", name: "알파", description: "", action: "rewardSpace" },
-          { id: "reward-place-allday", name: "올데이", description: "", action: "rewardSpace" },
-          { id: "reward-place-freezer", name: "프리저", description: "", action: "rewardSpace" },
-          { id: "reward-place-paragon", name: "파라곤", description: "", action: "rewardSpace" },
-          { id: "reward-place-alphabooster", name: "알파부스터", description: "", action: "rewardSpace" }
+          { id: "reward-place-alpha", name: "알파", description: "" },
+          { id: "reward-place-allday", name: "올데이", description: "" },
+          { id: "reward-place-freezer", name: "프리저", description: "" },
+          { id: "reward-place-paragon", name: "파라곤", description: "" },
+          { id: "reward-place-alphabooster", name: "알파부스터", description: "" }
         ]
       },
       {
         id: "reward-shopping",
         name: "네이버쇼핑 리워드",
         children: [
-          { id: "reward-shopping-freezer", name: "클린", description: "", action: "rewardSpace" }
+          { id: "reward-shopping-freezer", name: "프리저", description: "" },
+          { id: "reward-shopping-paragon", name: "파라곤", description: "" }
         ]
       },
       {
         id: "reward-coupang",
         name: "쿠팡 리워드",
         children: [
-          
-          { id: "reward-coupang-updownplus", name: "업다운플러스", description: "쿠팡 순위 작업 상품. 고정형(높은 순위 유지) / 부스터형(낮은 순위에서 순위 밀어올림) 중 선택 가능. 5일 5슬롯 무료테스트 제공.", action: "rewardSpace" }
+          { id: "reward-coupang-paragon", name: "파라곤", description: "" },
+          { id: "reward-coupang-updownplus", name: "업다운플러스", description: "쿠팡 순위 작업 상품. 고정형(높은 순위 유지) / 부스터형(낮은 순위에서 순위 밀어올림) 중 선택 가능. 5일 5슬롯 무료테스트 제공." }
         ]
       }
     ]
@@ -70,19 +73,21 @@ const CATALOG = [
   {
     id: "blog",
     name: "블로그",
+    categoryAction: "reviewSpace",
     children: [
-      { id: "blog-optimized", name: "최적화", description: "검색 노출에 유리하도록 세팅된 계정. 상위 노출이 급한 키워드/업체에 추천", action: "reviewSpace" },
-      { id: "blog-semi-optimized", name: "준최적화", description: "최적화 대비 합리적인 가격대의 대안. 노출 효과는 유지하면서 비용 부담을 줄이고 싶은 경우에 적합", action: "reviewSpace" },
-      { id: "blog-real-25-247", name: "실계정 (25·247)", description: "다량 배포용. 발행 안정성이 높아 누락 없이 진행하고자 할 때 적합", action: "reviewSpace" },
-      { id: "blog-non-real", name: "비실계정", description: "다량 배포용. 실계정 대비 단가는 낮지만 발행 누락 가능성 있음 (물량으로 커버하는 구조)", action: "reviewSpace" }
+      { id: "blog-optimized", name: "최적화", description: "검색 노출에 유리하도록 세팅된 계정. 상위 노출이 급한 키워드/업체에 추천" },
+      { id: "blog-semi-optimized", name: "준최적화", description: "최적화 대비 합리적인 가격대의 대안. 노출 효과는 유지하면서 비용 부담을 줄이고 싶은 경우에 적합" },
+      { id: "blog-real-25-247", name: "실계정 (25·247)", description: "다량 배포용. 발행 안정성이 높아 누락 없이 진행하고자 할 때 적합" },
+      { id: "blog-non-real", name: "비실계정", description: "다량 배포용. 실계정 대비 단가는 낮지만 발행 누락 가능성 있음 (물량으로 커버하는 구조)" }
     ]
   },
   {
     id: "cafe",
     name: "카페 배포",
+    categoryAction: "reviewSpace",
     children: [
-      { id: "cafe-optimized", name: "최적화카페", description: "활동 이력이 쌓인 최적화 카페 계정으로 자연스럽게 글을 배포합니다.<br>신뢰도 높은 노출로 잠재고객 유입 + 검색 노출까지 함께 관리", action: "reviewSpace" },
-      { id: "cafe-infiltration", name: "카페침투 / 맘카페 배포", description: "지역 맘카페 활동 계정으로 매장을 자연스럽게 알립니다.<br>육아맘 타겟 신뢰 기반 노출로 실질 방문·구매 전환까지 이어집니다.", action: "reviewSpace" }
+      { id: "cafe-optimized", name: "최적화카페", description: "활동 이력이 쌓인 최적화 카페 계정으로 자연스럽게 글을 배포합니다.<br>신뢰도 높은 노출로 잠재고객 유입 + 검색 노출까지 함께 관리" },
+      { id: "cafe-infiltration", name: "카페침투 / 맘카페 배포", description: "지역 맘카페 활동 계정으로 매장을 자연스럽게 알립니다.<br>육아맘 타겟 신뢰 기반 노출로 실질 방문·구매 전환까지 이어집니다." }
     ]
   },
   {
@@ -338,6 +343,49 @@ function renderGrid(){
   });
 
   gridContainer.appendChild(grid);
+
+  if(current && current.categoryAction){
+    gridContainer.appendChild(buildCategoryCta(current.categoryAction));
+  }
+}
+
+/* ---------- 카테고리 화면 하단 가입 유도 배너 ---------- */
+const CTA_COPY = {
+  rewardSpace: {
+    eyebrow: "PEAK · REWARD SPACE",
+    title: "리워드스페이스에서 전체 상품 구경하기",
+    desc: "플레이스·쇼핑·쿠팡 리워드 상품을 리워드스페이스에서 한 번에 확인하고 바로 가입할 수 있어요.",
+    label: "리워드스페이스 가입하기"
+  },
+  reviewSpace: {
+    eyebrow: "PEAK · REVIEW SPACE",
+    title: "review-space에서 전체 상품 구경하기",
+    desc: "블로그·카페 배포 상품을 review-space에서 한 번에 확인하고 바로 가입할 수 있어요.",
+    label: "review-space 가입하기"
+  }
+};
+
+function buildCategoryCta(actionType){
+  const copy = CTA_COPY[actionType];
+  const wrap = document.createElement('div');
+  wrap.className = 'category-cta';
+  wrap.innerHTML = `
+    <div class="category-cta-text">
+      <span class="category-cta-eyebrow">${copy.eyebrow}</span>
+      <div class="category-cta-title">${copy.title}</div>
+      <p class="category-cta-desc">${copy.desc}</p>
+    </div>
+    <button class="category-cta-btn" type="button">${copy.label} ↗</button>
+  `;
+  wrap.querySelector('.category-cta-btn').addEventListener('click', () => {
+    const url = actionType === 'rewardSpace' ? LINKS.rewardSpace : LINKS.reviewSpace;
+    if(url){
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      alert('링크가 아직 등록되지 않았어요. script.js 상단 LINKS 값을 채워주세요.');
+    }
+  });
+  return wrap;
 }
 
 function renderBoard(node){
@@ -383,18 +431,7 @@ function renderAction(node){
   const btn = document.createElement('button');
   btn.className = 'detail-action-btn';
 
-  if(node.action === 'rewardSpace' || node.action === 'reviewSpace'){
-    const url = node.action === 'rewardSpace' ? LINKS.rewardSpace : LINKS.reviewSpace;
-    const label = node.action === 'rewardSpace' ? '리워드스페이스에서 가입하러 가기' : 'review-space에서 가입하러 가기';
-    btn.textContent = label + ' ↗';
-    btn.addEventListener('click', () => {
-      if(url){
-        window.open(url, '_blank', 'noopener,noreferrer');
-      } else {
-        alert('링크가 아직 등록되지 않았어요. script.js 상단 LINKS 값을 채워주세요.');
-      }
-    });
-  } else if(node.action === 'kakao'){
+  if(node.action === 'kakao'){
     btn.textContent = '카카오톡으로 문의하기 ↗';
     btn.addEventListener('click', () => {
       if(LINKS.kakaoUrl){
