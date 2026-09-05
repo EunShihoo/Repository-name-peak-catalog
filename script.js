@@ -54,15 +54,14 @@ const CATALOG = [
         id: "reward-shopping",
         name: "네이버쇼핑 리워드",
         children: [
-          { id: "reward-shopping-freezer", name: "프리저", description: "", action: "rewardSpace" },
-          { id: "reward-shopping-paragon", name: "파라곤", description: "", action: "rewardSpace" }
+          { id: "reward-shopping-freezer", name: "클린", description: "", action: "rewardSpace" }
         ]
       },
       {
         id: "reward-coupang",
         name: "쿠팡 리워드",
         children: [
-          { id: "reward-coupang-paragon", name: "파라곤", description: "", action: "rewardSpace" },
+          
           { id: "reward-coupang-updownplus", name: "업다운플러스", description: "쿠팡 순위 작업 상품. 고정형(높은 순위 유지) / 부스터형(낮은 순위에서 순위 밀어올림) 중 선택 가능. 5일 5슬롯 무료테스트 제공.", action: "rewardSpace" }
         ]
       }
