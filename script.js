@@ -104,8 +104,8 @@ const CATALOG = [
           { title: "1장 제공", url: "https://blog.naver.com/smile_days7/224398843174" },
           { title: "3장 생성", url: "https://blog.naver.com/luck005/224399299161" },
           { title: "3장 제공", url: "https://m.blog.naver.com/jye10111/224398980721" },
-          { title: "3장 프리미엄)", url: "https://blog.naver.com/sstou9/224387155424"},
-          { title: "3장 프리미엄)", url: "https://blog.naver.com/wlsgks66288/224399246696"},
+          { title: "3장 프리미엄", url: "https://blog.naver.com/sstou9/224387155424"},
+          { title: "3장 프리미엄", url: "https://blog.naver.com/wlsgks66288/224399246696"},
           { title: "7장 생성", url: "https://blog.naver.com/kyungook4055/224338434681" },
           { title: "7장 제공", url: "https://blog.naver.com/judi1971/224320530012" }
         ]
