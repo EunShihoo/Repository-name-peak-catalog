@@ -394,6 +394,8 @@ p.subtitle{
   transition: transform .16s ease, color .16s ease;
 }
 .board-item:hover .board-item-arrow{ color: var(--sky-deep); transform: translateX(3px); }
+.board-item-empty{ opacity: .55; }
+.board-item-empty:hover{ transform: none; box-shadow: none; border-color: var(--line); }
 
 /* ---------- 상세 패널 ---------- */
 #overlay{

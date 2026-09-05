@@ -29,11 +29,11 @@
    자동으로 반영됩니다. (VS Code에서 이 부분만 수정하면 돼요)
    ------------------------------------------------------------ */
 const LINKS = {
-  rewardSpace: "https://rewardspace.kr/", // ← 리워드스페이스 회원가입 링크 입력
+  rewardSpace: "", // ← 리워드스페이스 회원가입 링크 입력
   rewardReferralId: "asisay10", // ← 리워드스페이스 가입 시 입력할 추천인 아이디
-  reviewSpace: "https://review-space.kr/r/dmstlgn", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
-  kakaoUrl: "https://open.kakao.com/o/snn5zjIi",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
-  kakaoId: "asisay10"      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
+  reviewSpace: "", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
+  kakaoUrl: "",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
+  kakaoId: ""      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
 };
 
 const CATALOG = [
@@ -48,7 +48,7 @@ const CATALOG = [
         children: [
           { id: "reward-place-alpha", name: "알파", description: "" },
           { id: "reward-place-allday", name: "올데이", description: "" },
-          
+          { id: "reward-place-freezer", name: "프리저", description: "" },
           { id: "reward-place-paragon", name: "파라곤", description: "" },
           { id: "reward-place-alphabooster", name: "알파부스터", description: "" }
         ]
@@ -57,15 +57,15 @@ const CATALOG = [
         id: "reward-shopping",
         name: "네이버쇼핑 리워드",
         children: [
-        
-          { id: "reward-shopping-paragon", name: "클린", description: "" }
+          { id: "reward-shopping-freezer", name: "프리저", description: "" },
+          { id: "reward-shopping-paragon", name: "파라곤", description: "" }
         ]
       },
       {
         id: "reward-coupang",
         name: "쿠팡 리워드",
         children: [
-          
+          { id: "reward-coupang-paragon", name: "파라곤", description: "" },
           { id: "reward-coupang-updownplus", name: "업다운플러스", description: "쿠팡 순위 작업 상품. 고정형(높은 순위 유지) / 부스터형(낮은 순위에서 순위 밀어올림) 중 선택 가능. 5일 5슬롯 무료테스트 제공." }
         ]
       }
@@ -76,10 +76,46 @@ const CATALOG = [
     name: "블로그",
     categoryAction: "reviewSpace",
     children: [
-      { id: "blog-optimized", name: "최적화", description: "검색 노출에 유리하도록 세팅된 계정. 상위 노출이 급한 키워드/업체에 추천" },
-      { id: "blog-semi-optimized", name: "준최적화", description: "최적화 대비 합리적인 가격대의 대안. 노출 효과는 유지하면서 비용 부담을 줄이고 싶은 경우에 적합" },
-      { id: "blog-real-25-247", name: "실계정 (25·247)", description: "다량 배포용. 발행 안정성이 높아 누락 없이 진행하고자 할 때 적합" },
-      { id: "blog-non-real", name: "비실계정", description: "다량 배포용. 실계정 대비 단가는 낮지만 발행 누락 가능성 있음 (물량으로 커버하는 구조)" }
+      {
+        id: "blog-optimized",
+        name: "최적화",
+        links: [
+          { title: "1장", url: "" },
+          { title: "3장", url: "" },
+          { title: "5장", url: "" },
+          { title: "7장", url: "" }
+        ]
+      },
+      {
+        id: "blog-semi-optimized",
+        name: "준최적화",
+        links: [
+          { title: "1장", url: "" },
+          { title: "3장", url: "" },
+          { title: "5장", url: "" },
+          { title: "7장", url: "" }
+        ]
+      },
+      {
+        id: "blog-real-25-247",
+        name: "실계정 (25·247)",
+        links: [
+          { title: "1장", url: "" },
+          { title: "3장", url: "" },
+          { title: "5장", url: "" },
+          { title: "7장", url: "" }
+        ]
+      },
+      {
+        id: "blog-non-real",
+        name: "비실계정",
+        links: [
+          { title: "1장", url: "" },
+          { title: "3장", url: "" },
+          { title: "5장", url: "" },
+          { title: "7장", url: "" }
+        ]
+      }
     ]
   },
   {
@@ -368,9 +404,9 @@ const CTA_COPY = {
   },
   reviewSpace: {
     eyebrow: "PEAK · REVIEW SPACE",
-    title: "리뷰스페이스에서 전체 상품 구경하기",
-    desc: "블로그·카페 배포 상품을 리뷰스페이스에서 한 번에 확인하고 바로 가입할 수 있어요.",
-    label: "리뷰스페이스 가입하기"
+    title: "review-space에서 전체 상품 구경하기",
+    desc: "블로그·카페 배포 상품을 review-space에서 한 번에 확인하고 바로 가입할 수 있어요.",
+    label: "review-space 가입하기"
   }
 };
 
@@ -427,15 +463,25 @@ function renderBoard(node){
   list.className = 'board-list';
 
   node.links.forEach(item => {
+    const hasUrl = item.url && item.url.trim().length > 0;
     const a = document.createElement('a');
     a.className = 'board-item';
-    a.href = item.url;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
+    if(!hasUrl) a.classList.add('board-item-empty');
     a.innerHTML = `
       <span class="board-item-title">${item.title}</span>
       <span class="board-item-arrow">↗</span>
     `;
+    if(hasUrl){
+      a.href = item.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    } else {
+      a.href = '#';
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('아직 등록된 링크가 없어요. script.js의 CATALOG에서 url을 채워주세요.');
+      });
+    }
     list.appendChild(a);
   });
 
