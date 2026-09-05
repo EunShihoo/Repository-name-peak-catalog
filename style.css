@@ -179,14 +179,14 @@ p.subtitle{
   to{ opacity: 1; transform: translateY(0); }
 }
 .card{
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--sky-deep), var(--sky));
+  border: none;
   border-radius: var(--radius);
   padding: 20px 20px 18px;
   cursor: pointer;
   text-align: left;
   font-family: var(--font-body);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  transition: transform .18s ease, box-shadow .18s ease;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -195,12 +195,11 @@ p.subtitle{
 .card:hover{
   transform: translateY(-3px);
   box-shadow: var(--shadow);
-  border-color: var(--sky);
 }
 .card-name{
   font-size: 16.5px;
   font-weight: 700;
-  color: var(--ink);
+  color: #fff;
   letter-spacing: -.01em;
 }
 .card-meta{
@@ -211,15 +210,15 @@ p.subtitle{
 }
 .card-count{
   font-size: 12.5px;
-  color: var(--sky-deep);
+  color: #fff;
   font-weight: 600;
-  background: var(--sky-pale);
+  background: rgba(255,255,255,.22);
   padding: 3px 9px;
   border-radius: 999px;
 }
 .card-desc-preview{
   font-size: 13px;
-  color: var(--ink-soft);
+  color: rgba(255,255,255,.85);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -227,10 +226,10 @@ p.subtitle{
   overflow: hidden;
 }
 .card-arrow{
-  color: var(--ink-faint);
+  color: rgba(255,255,255,.75);
   transition: transform .18s ease, color .18s ease;
 }
-.card:hover .card-arrow{ color: var(--sky-deep); transform: translateX(3px); }
+.card:hover .card-arrow{ color: #fff; transform: translateX(3px); }
 
 .card{ position: relative; }
 .hover-tip{
