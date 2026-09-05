@@ -27,10 +27,11 @@
    자동으로 반영됩니다. (VS Code에서 이 부분만 수정하면 돼요)
    ------------------------------------------------------------ */
 const LINKS = {
-  rewardSpace: "", // ← 리워드스페이스 회원가입 링크 (추천인 코드 포함) 입력
-  reviewSpace: "", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
-  kakaoUrl: "",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
-  kakaoId: ""      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
+  rewardSpace: "https://rewardspace.kr/", // ← 리워드스페이스 회원가입 링크 (추천인 코드 포함) 입력
+  rewardSpaceReferralId: "asisay10",
+  reviewSpace: "https://review-space.kr/r/dmstlgn", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
+  kakaoUrl: "https://open.kakao.com/o/snn5zjIi",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
+  kakaoId: "asisay10"      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
 };
 
 const CATALOG = [
