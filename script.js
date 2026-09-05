@@ -368,9 +368,9 @@ const CTA_COPY = {
   },
   reviewSpace: {
     eyebrow: "PEAK · REVIEW SPACE",
-    title: "review-space에서 전체 상품 구경하기",
-    desc: "블로그·카페 배포 상품을 review-space에서 한 번에 확인하고 바로 가입할 수 있어요.",
-    label: "review-space 가입하기"
+    title: "리뷰스페이스에서 전체 상품 구경하기",
+    desc: "블로그·카페 배포 상품을 리뷰스페이스에서 한 번에 확인하고 바로 가입할 수 있어요.",
+    label: "리뷰스페이스 가입하기"
   }
 };
 
