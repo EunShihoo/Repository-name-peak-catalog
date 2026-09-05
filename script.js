@@ -133,7 +133,7 @@ const CATALOG = [
     id: "review",
     name: "리뷰",
     children: [
-      { id: "review-clip", name: "클립리뷰", description: "✅ 콘텐츠 형태 : 네이버 클립 숏폼 콘텐츠 배포<br>✅ 활용 : 업체·플레이스·브랜드·상품 홍보 등<br>✅ 방식 : 슬라이드 영상 또는 제공된 영상으로 진행" },
+      { id: "review-clip", name: "클립리뷰", description: "✅ 콘텐츠 형태 : 네이버 클립 숏폼 콘텐츠 배포<br>✅ 활용 : 업체·플레이스·브랜드·상품 홍보 등<br>✅ 방식 : 슬라이드 영상 또는 제공된 영상으로 진행<br>✅ 사진 또는 영상만으로 간편 접수<br>✅ 플레이스 쇼핑 모두 진행 가능<br>✅ 플레이스/스토어 링크 없이도 진행 가능<br>✅ 클립 지면 추가 노출<br>✅ 클립 알고리즘을 통한 추가 노출 <br>✅ 오가닉 유입 기대<br>✅ 순위 반영 및 지수 상승에 도움 " },
       { id: "review-kakaomap", name: "카카오맵리뷰", description: "" },
       { id: "review-tmap", name: "티맵리뷰", description: "" },
       { id: "review-catchtable", name: "캐치테이블", description: "" }
