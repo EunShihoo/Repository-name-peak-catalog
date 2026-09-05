@@ -61,7 +61,6 @@ const CATALOG = [
         id: "reward-shopping",
         name: "네이버쇼핑 리워드",
         children: [
-         
           { id: "reward-shopping-paragon", name: "클린", description: "" }
         ]
       },
@@ -69,7 +68,6 @@ const CATALOG = [
         id: "reward-coupang",
         name: "쿠팡 리워드",
         children: [
-          
           { id: "reward-coupang-updownplus", name: "업다운플러스", description: "쿠팡 순위 작업 상품. 고정형(높은 순위 유지) / 부스터형(낮은 순위에서 순위 밀어올림) 중 선택 가능. 5일 5슬롯 무료테스트 제공." }
         ]
       }
@@ -154,7 +152,6 @@ const CATALOG = [
         links: [
           { title: "레퍼런스 1", url: "https://m.naver.com/shorts/?seedMediaId=38F06A45C98CE212E1BCFD8BF72C072E63B7&serviceType=CLIP" },
           { title: "레퍼런스 2", url: "https://m.naver.com/shorts/?seedMediaId=A74AFD0C12D50D01855E338657EE98C82B52&serviceType=CLIP" }
-        
         ]
       },
       { id: "review-kakaomap", name: "카카오맵리뷰", description: "카카오톡 문의" },
@@ -372,7 +369,7 @@ function renderGrid(){
     const card = document.createElement('button');
     card.className = 'card';
 
-        if(isCategory(node)){
+    if(isCategory(node)){
       card.innerHTML = `
         <div class="card-name">${node.name}</div>
         <div class="card-meta">
@@ -398,24 +395,6 @@ function renderGrid(){
           <div class="card-name">${node.name}</div>
           <div class="card-meta">
             <span class="card-count">레퍼런스 ${node.links.length}개</span>
-            <span class="card-arrow">→</span>
-          </div>
-        `;
-      }
-      card.addEventListener('click', () => goTo(node));
-    } else {
-      const hasDesc = node.description && node.description.trim().length > 0;
-      if(hasDesc){
-        card.classList.add('has-tip');
-        card.innerHTML = `
-          <div class="card-name">${node.name}</div>
-          <div class="hover-tip">${node.description}</div>
-        `;
-      } else {
-        card.innerHTML = `
-          <div class="card-name">${node.name}</div>
-          <div class="card-meta">
-            <span class="card-count">${countLabel(node)}</span>
             <span class="card-arrow">→</span>
           </div>
         `;
