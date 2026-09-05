@@ -29,7 +29,8 @@
    자동으로 반영됩니다. (VS Code에서 이 부분만 수정하면 돼요)
    ------------------------------------------------------------ */
 const LINKS = {
-  rewardSpace: "", // ← 리워드스페이스 회원가입 링크 (추천인 코드 포함) 입력
+  rewardSpace: "", // ← 리워드스페이스 회원가입 링크 입력
+  rewardReferralId: "asisay10", // ← 리워드스페이스 가입 시 입력할 추천인 아이디
   reviewSpace: "", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
   kakaoUrl: "",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
   kakaoId: ""      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
@@ -354,7 +355,7 @@ const CTA_COPY = {
   rewardSpace: {
     eyebrow: "PEAK · REWARD SPACE",
     title: "리워드스페이스에서 전체 상품 구경하기",
-    desc: "플레이스·쇼핑·쿠팡 리워드 상품을 리워드스페이스에서 한 번에 확인하고 바로 가입할 수 있어요.",
+    referral: LINKS.rewardReferralId,
     label: "리워드스페이스 가입하기"
   },
   reviewSpace: {
@@ -373,10 +374,20 @@ function buildCategoryCta(actionType){
     <div class="category-cta-text">
       <span class="category-cta-eyebrow">${copy.eyebrow}</span>
       <div class="category-cta-title">${copy.title}</div>
-      <p class="category-cta-desc">${copy.desc}</p>
+      ${copy.referral
+        ? `<button type="button" class="category-cta-ref" title="클릭하면 복사돼요">추천인 : ${copy.referral}</button>`
+        : `<p class="category-cta-desc">${copy.desc}</p>`}
     </div>
     <button class="category-cta-btn" type="button">${copy.label} ↗</button>
   `;
+  const refBtn = wrap.querySelector('.category-cta-ref');
+  if(refBtn){
+    refBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(copy.referral)
+        .then(() => alert('추천인 아이디(' + copy.referral + ')가 복사되었어요.'))
+        .catch(() => {});
+    });
+  }
   wrap.querySelector('.category-cta-btn').addEventListener('click', () => {
     const url = actionType === 'rewardSpace' ? LINKS.rewardSpace : LINKS.reviewSpace;
     if(url){
