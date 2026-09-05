@@ -381,7 +381,7 @@ function renderGrid(){
         </div>
       `;
       card.addEventListener('click', () => goTo(node));
-    } else if(isBoard(node)){
+  } else if(isBoard(node)){
       const hasDesc = node.description && node.description.trim().length > 0;
       if(hasDesc){
         card.classList.add('has-tip');
