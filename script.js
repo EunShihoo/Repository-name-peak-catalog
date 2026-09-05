@@ -372,16 +372,38 @@ function renderGrid(){
     const card = document.createElement('button');
     card.className = 'card';
 
-    if(isCategory(node)){
+        if(isCategory(node)){
       card.innerHTML = `
         <div class="card-name">${node.name}</div>
         <div class="card-meta">
-          <span class="card-count">레퍼런스 ${node.links.length}개</span>
+          <span class="card-count">${countLabel(node)}</span>
           <span class="card-arrow">→</span>
         </div>
       `;
       card.addEventListener('click', () => goTo(node));
-  } else if(isBoard(node)){
+    } else if(isBoard(node)){
+      const hasDesc = node.description && node.description.trim().length > 0;
+      if(hasDesc){
+        card.classList.add('has-tip');
+        card.innerHTML = `
+          <div class="card-name">${node.name}</div>
+          <div class="card-meta">
+            <span class="card-count">레퍼런스 ${node.links.length}개</span>
+            <span class="card-arrow">→</span>
+          </div>
+          <div class="hover-tip">${node.description}</div>
+        `;
+      } else {
+        card.innerHTML = `
+          <div class="card-name">${node.name}</div>
+          <div class="card-meta">
+            <span class="card-count">레퍼런스 ${node.links.length}개</span>
+            <span class="card-arrow">→</span>
+          </div>
+        `;
+      }
+      card.addEventListener('click', () => goTo(node));
+    } else {
       const hasDesc = node.description && node.description.trim().length > 0;
       if(hasDesc){
         card.classList.add('has-tip');
