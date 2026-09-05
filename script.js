@@ -14,12 +14,16 @@
         항상 떠 있는 고정 "카톡 문의" 버튼 하나로 통일했습니다.
         (아래 LINKS의 카카오톡 정보만 채우면 그 버튼에 자동 반영됨)
         ※ 리워드/블로그/카페 배포는 카테고리 화면 상단에 뜨는
-          "리워드스페이스/review-space 가입하기" 배너로 안내합니다.
+          "리워드스페이스/리뷰스페이스 가입하기" 배너로 안내합니다.
           (아래 CATALOG의 categoryAction 필드 참고)
 
    3) 게시판 (하이퍼링크 리스트, 클릭하면 링크 목록 화면으로 이동)
-      { id, name, links: [ { title, url }, ... ] }
+      { id, name, description: "설명(선택)", links: [ { title, url }, ... ] }
 
+      → description을 같이 넣으면, 카드에 마우스 올렸을 때 설명이
+        호버 툴팁으로 뜨고, 클릭하면 게시판(레퍼런스 목록) 화면으로
+        이동합니다. description 없이 links만 있으면 카드에 개수뱃지가
+        뜹니다.
       → 게시판에 항목 추가하고 싶으면 links 배열에
         { title: "제목", url: "https://..." } 만 추가하면 됩니다.
    ============================================================ */
@@ -31,7 +35,7 @@
 const LINKS = {
   rewardSpace: "", // ← 리워드스페이스 회원가입 링크 입력
   rewardReferralId: "asisay10", // ← 리워드스페이스 가입 시 입력할 추천인 아이디
-  reviewSpace: "", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
+  reviewSpace: "", // ← 리뷰스페이스 회원가입 링크 (추천인 코드 포함) 입력
   kakaoUrl: "",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
   kakaoId: ""      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
 };
@@ -104,8 +108,8 @@ const CATALOG = [
           { title: "1장 제공", url: "https://blog.naver.com/smile_days7/224398843174" },
           { title: "3장 생성", url: "https://blog.naver.com/luck005/224399299161" },
           { title: "3장 제공", url: "https://m.blog.naver.com/jye10111/224398980721" },
-          { title: "3장 프리미엄", url: "https://blog.naver.com/sstou9/224387155424"},
-          { title: "3장 프리미엄", url: "https://blog.naver.com/wlsgks66288/224399246696"},
+          { title: "3장 프리미엄", url: "https://blog.naver.com/sstou9/224387155424" },
+          { title: "3장 프리미엄", url: "https://blog.naver.com/wlsgks66288/224399246696" },
           { title: "7장 생성", url: "https://blog.naver.com/kyungook4055/224338434681" },
           { title: "7장 제공", url: "https://blog.naver.com/judi1971/224320530012" }
         ]
@@ -114,8 +118,8 @@ const CATALOG = [
         id: "blog-non-real",
         name: "비실계정",
         links: [
-          { title: "6장", url: "http://blog.naver.com/x22k8w8br/224399536878", },
-          { title: "5장", url: "http://blog.naver.com/qzljhj1grb/224399723619", }
+          { title: "6장", url: "http://blog.naver.com/x22k8w8br/224399536878" },
+          { title: "5장", url: "http://blog.naver.com/qzljhj1grb/224399723619" }
         ]
       }
     ]
@@ -125,7 +129,17 @@ const CATALOG = [
     name: "카페 배포",
     categoryAction: "reviewSpace",
     children: [
-      { id: "cafe-optimized", name: "최적화카페", description: "활동 이력이 쌓인 최적화 카페 계정으로 자연스럽게 글을 배포합니다.<br>신뢰도 높은 노출로 잠재고객 유입 + 검색 노출까지 함께 관리" },
+      {
+        id: "cafe-optimized",
+        name: "최적화카페",
+        description: "활동 이력이 쌓인 최적화 카페 계정으로 자연스럽게 글을 배포합니다.<br>신뢰도 높은 노출로 잠재고객 유입 + 검색 노출까지 함께 관리",
+        links: [
+          { title: "레퍼런스 1", url: "" },
+          { title: "레퍼런스 2", url: "" },
+          { title: "레퍼런스 3", url: "" },
+          { title: "레퍼런스 4", url: "" }
+        ]
+      },
       { id: "cafe-infiltration", name: "카페침투 / 맘카페 배포", description: "지역 맘카페 활동 계정으로 매장을 자연스럽게 알립니다.<br>육아맘 타겟 신뢰 기반 노출로 실질 방문·구매 전환까지 이어집니다." }
     ]
   },
@@ -133,7 +147,18 @@ const CATALOG = [
     id: "review",
     name: "리뷰",
     children: [
-      { id: "review-clip", name: "클립리뷰", description: "✅ 콘텐츠 형태 : 네이버 클립 숏폼 콘텐츠 배포<br>✅ 활용 : 업체·플레이스·브랜드·상품 홍보 등<br>✅ 방식 : 슬라이드 영상 또는 제공된 영상으로 진행<br>✅ 사진 또는 영상만으로 간편 접수<br>✅ 플레이스 쇼핑 모두 진행 가능<br>✅ 플레이스/스토어 링크 없이도 진행 가능<br>✅ 클립 지면 추가 노출<br>✅ 클립 알고리즘을 통한 추가 노출 <br>✅ 오가닉 유입 기대<br>✅ 순위 반영 및 지수 상승에 도움 " },
+      {
+        id: "review-clip",
+        name: "클립리뷰",
+        description: "✅ 콘텐츠 형태 : 네이버 클립 숏폼 콘텐츠 배포<br>✅ 활용 : 업체·플레이스·브랜드·상품 홍보 등<br>✅ 방식 : 슬라이드 영상 또는 제공된 영상으로 진행<br>✅ 사진 또는 영상만으로 간편 접수<br>✅ 플레이스 쇼핑 모두 진행 가능<br>✅ 플레이스/스토어 링크 없이도 진행 가능<br>✅ 클립 지면 추가 노출<br>✅ 클립 알고리즘을 통한 추가 노출 <br>✅ 오가닉 유입 기대<br>✅ 순위 반영 및 지수 상승에 도움 ",
+        links: [
+          { title: "레퍼런스 1", url: "" },
+          { title: "레퍼런스 2", url: "" },
+          { title: "레퍼런스 3", url: "" },
+          { title: "레퍼런스 4", url: "" },
+          { title: "레퍼런스 5", url: "" }
+        ]
+      },
       { id: "review-kakaomap", name: "카카오맵리뷰", description: "" },
       { id: "review-tmap", name: "티맵리뷰", description: "" },
       { id: "review-catchtable", name: "캐치테이블", description: "" }
@@ -359,13 +384,22 @@ function renderGrid(){
       `;
       card.addEventListener('click', () => goTo(node));
     } else if(isBoard(node)){
-      card.innerHTML = `
-        <div class="card-name">${node.name}</div>
-        <div class="card-meta">
-          <span class="card-count">${countLabel(node)}</span>
-          <span class="card-arrow">→</span>
-        </div>
-      `;
+      const hasDesc = node.description && node.description.trim().length > 0;
+      if(hasDesc){
+        card.classList.add('has-tip');
+        card.innerHTML = `
+          <div class="card-name">${node.name}</div>
+          <div class="hover-tip">${node.description}</div>
+        `;
+      } else {
+        card.innerHTML = `
+          <div class="card-name">${node.name}</div>
+          <div class="card-meta">
+            <span class="card-count">${countLabel(node)}</span>
+            <span class="card-arrow">→</span>
+          </div>
+        `;
+      }
       card.addEventListener('click', () => goTo(node));
     } else {
       const hasDesc = node.description && node.description.trim().length > 0;
@@ -452,6 +486,14 @@ function renderBoard(node){
   label.className = 'level-label';
   label.textContent = node.name + ' 게시판';
   gridContainer.appendChild(label);
+
+  const hasDesc = node.description && node.description.trim().length > 0;
+  if(hasDesc){
+    const descBox = document.createElement('div');
+    descBox.style.cssText = 'font-size:14px; line-height:1.65; color:var(--ink-soft); margin:0 0 18px; max-width:640px;';
+    descBox.innerHTML = node.description;
+    gridContainer.appendChild(descBox);
+  }
 
   if(!node.links || node.links.length === 0){
     const empty = document.createElement('div');
