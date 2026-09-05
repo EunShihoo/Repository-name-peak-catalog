@@ -29,11 +29,11 @@
    자동으로 반영됩니다. (VS Code에서 이 부분만 수정하면 돼요)
    ------------------------------------------------------------ */
 const LINKS = {
-  rewardSpace: "", // ← 리워드스페이스 회원가입 링크 입력
+  rewardSpace: "https://rewardspace.kr/", // ← 리워드스페이스 회원가입 링크 입력
   rewardReferralId: "asisay10", // ← 리워드스페이스 가입 시 입력할 추천인 아이디
-  reviewSpace: "", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
-  kakaoUrl: "",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
-  kakaoId: ""      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
+  reviewSpace: "https://review-space.kr/r/dmstlgn", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
+  kakaoUrl: "https://open.kakao.com/o/snn5zjIi",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
+  kakaoId: "asisay10"      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
 };
 
 const CATALOG = [
@@ -48,7 +48,7 @@ const CATALOG = [
         children: [
           { id: "reward-place-alpha", name: "알파", description: "" },
           { id: "reward-place-allday", name: "올데이", description: "" },
-          { id: "reward-place-freezer", name: "프리저", description: "" },
+          
           { id: "reward-place-paragon", name: "파라곤", description: "" },
           { id: "reward-place-alphabooster", name: "알파부스터", description: "" }
         ]
@@ -57,15 +57,15 @@ const CATALOG = [
         id: "reward-shopping",
         name: "네이버쇼핑 리워드",
         children: [
-          { id: "reward-shopping-freezer", name: "프리저", description: "" },
-          { id: "reward-shopping-paragon", name: "파라곤", description: "" }
+        
+          { id: "reward-shopping-paragon", name: "클린", description: "" }
         ]
       },
       {
         id: "reward-coupang",
         name: "쿠팡 리워드",
         children: [
-          { id: "reward-coupang-paragon", name: "파라곤", description: "" },
+          
           { id: "reward-coupang-updownplus", name: "업다운플러스", description: "쿠팡 순위 작업 상품. 고정형(높은 순위 유지) / 부스터형(낮은 순위에서 순위 밀어올림) 중 선택 가능. 5일 5슬롯 무료테스트 제공." }
         ]
       }
