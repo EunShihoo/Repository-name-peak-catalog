@@ -33,11 +33,11 @@
    자동으로 반영됩니다. (VS Code에서 이 부분만 수정하면 돼요)
    ------------------------------------------------------------ */
 const LINKS = {
-  rewardSpace: "", // ← 리워드스페이스 회원가입 링크 입력
+  rewardSpace: "https://rewardspace.kr/", // ← 리워드스페이스 회원가입 링크 입력
   rewardReferralId: "asisay10", // ← 리워드스페이스 가입 시 입력할 추천인 아이디
-  reviewSpace: "", // ← 리뷰스페이스 회원가입 링크 (추천인 코드 포함) 입력
-  kakaoUrl: "",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
-  kakaoId: ""      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
+  reviewSpace: "https://review-space.kr/r/dmstlgn", // ← 리뷰스페이스 회원가입 링크 (추천인 코드 포함) 입력
+  kakaoUrl: "https://open.kakao.com/o/snn5zjIi",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
+  kakaoId: "asisay10"      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
 };
 
 const CATALOG = [
@@ -52,7 +52,7 @@ const CATALOG = [
         children: [
           { id: "reward-place-alpha", name: "알파", description: "" },
           { id: "reward-place-allday", name: "올데이", description: "" },
-          { id: "reward-place-freezer", name: "프리저", description: "" },
+          { id: "reward-place-freezer", name: "프리저[저장]", description: "" },
           { id: "reward-place-paragon", name: "파라곤", description: "" },
           { id: "reward-place-alphabooster", name: "알파부스터", description: "" }
         ]
@@ -61,15 +61,15 @@ const CATALOG = [
         id: "reward-shopping",
         name: "네이버쇼핑 리워드",
         children: [
-          { id: "reward-shopping-freezer", name: "프리저", description: "" },
-          { id: "reward-shopping-paragon", name: "파라곤", description: "" }
+         
+          { id: "reward-shopping-paragon", name: "클린", description: "" }
         ]
       },
       {
         id: "reward-coupang",
         name: "쿠팡 리워드",
         children: [
-          { id: "reward-coupang-paragon", name: "파라곤", description: "" },
+          
           { id: "reward-coupang-updownplus", name: "업다운플러스", description: "쿠팡 순위 작업 상품. 고정형(높은 순위 유지) / 부스터형(낮은 순위에서 순위 밀어올림) 중 선택 가능. 5일 5슬롯 무료테스트 제공." }
         ]
       }
@@ -134,10 +134,10 @@ const CATALOG = [
         name: "최적화카페",
         description: "활동 이력이 쌓인 최적화 카페 계정으로 자연스럽게 글을 배포합니다.<br>신뢰도 높은 노출로 잠재고객 유입 + 검색 노출까지 함께 관리",
         links: [
-          { title: "레퍼런스 1", url: "" },
-          { title: "레퍼런스 2", url: "" },
-          { title: "레퍼런스 3", url: "" },
-          { title: "레퍼런스 4", url: "" }
+          { title: "레퍼런스 1", url: "https://cafe.naver.com/ungsangjang/866993?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InVuZ3NhbmdqYW5nIiwiYXJ0aWNsZUlkIjo4NjY5OTMsImlzc3VlZEF0IjoxNzg4NTk5ODgzMTk4fQ.0q12Lra-KwPqiMj-ZmzIcbPSldFk8c4T2ZwYNwROxF0&q=%ec%98%a4%eb%8c%80%ec%82%b0%20%eb%a7%9b%ec%a7%91&tc=naver_search" },
+          { title: "레퍼런스 2", url: "https://cafe.naver.com/ungsangjang/866992?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InVuZ3NhbmdqYW5nIiwiYXJ0aWNsZUlkIjo4NjY5OTIsImlzc3VlZEF0IjoxNzg4NjAxMjg3NzI5fQ.BEIXicaC2o2kII4ymYKKeW_97TuXbUbZeONhI30oZ24&q=%ed%8f%89%ec%b0%bd%20%ec%95%8c%ed%8e%9c%ec%8b%9c%ec%95%84%20%eb%a7%9b%ec%a7%91%20list&tc=naver_search" },
+          { title: "레퍼런스 3", url: "https://cafe.naver.com/1sejongcity/1991371?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6IjFzZWpvbmdjaXR5IiwiYXJ0aWNsZUlkIjoxOTkxMzcxLCJpc3N1ZWRBdCI6MTc4ODYwMTMzMzIxMH0.XGm4-ZoRCno6KSid0fAUinxm_tkmcJAekhTf7XgmMs8&q=%ed%8f%89%ec%b0%bd%20%ec%95%a0%ea%b2%ac%eb%8f%99%eb%b0%98%20%ec%8b%9d%eb%8b%b9%20choice&tc=naver_search" },
+          { title: "레퍼런스 4", url: "https://cafe.naver.com/1sejongcity/1991648?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6IjFzZWpvbmdjaXR5IiwiYXJ0aWNsZUlkIjoxOTkxNjQ4LCJpc3N1ZWRBdCI6MTc4ODYwMTM1NjMxM30.P-XOLYD1lZ5YdER0sqg2Kfe6PfPX8CFb8RHxYuREt7k&q=%ed%8f%89%ec%b0%bd%20%ed%9c%98%eb%8b%89%ec%8a%a4%ed%8c%8c%ed%81%ac%20%eb%a7%9b%ec%a7%91%20%ec%b6%94%ec%b2%9c&tc=naver_search" }
         ]
       },
       { id: "cafe-infiltration", name: "카페침투 / 맘카페 배포", description: "지역 맘카페 활동 계정으로 매장을 자연스럽게 알립니다.<br>육아맘 타겟 신뢰 기반 노출로 실질 방문·구매 전환까지 이어집니다." }
@@ -152,16 +152,14 @@ const CATALOG = [
         name: "클립리뷰",
         description: "✅ 콘텐츠 형태 : 네이버 클립 숏폼 콘텐츠 배포<br>✅ 활용 : 업체·플레이스·브랜드·상품 홍보 등<br>✅ 방식 : 슬라이드 영상 또는 제공된 영상으로 진행<br>✅ 사진 또는 영상만으로 간편 접수<br>✅ 플레이스 쇼핑 모두 진행 가능<br>✅ 플레이스/스토어 링크 없이도 진행 가능<br>✅ 클립 지면 추가 노출<br>✅ 클립 알고리즘을 통한 추가 노출 <br>✅ 오가닉 유입 기대<br>✅ 순위 반영 및 지수 상승에 도움 ",
         links: [
-          { title: "레퍼런스 1", url: "" },
-          { title: "레퍼런스 2", url: "" },
-          { title: "레퍼런스 3", url: "" },
-          { title: "레퍼런스 4", url: "" },
-          { title: "레퍼런스 5", url: "" }
+          { title: "레퍼런스 1", url: "https://m.naver.com/shorts/?seedMediaId=38F06A45C98CE212E1BCFD8BF72C072E63B7&serviceType=CLIP" },
+          { title: "레퍼런스 2", url: "https://m.naver.com/shorts/?seedMediaId=A74AFD0C12D50D01855E338657EE98C82B52&serviceType=CLIP" }
+        
         ]
       },
-      { id: "review-kakaomap", name: "카카오맵리뷰", description: "" },
-      { id: "review-tmap", name: "티맵리뷰", description: "" },
-      { id: "review-catchtable", name: "캐치테이블", description: "" }
+      { id: "review-kakaomap", name: "카카오맵리뷰", description: "카카오톡 문의" },
+      { id: "review-tmap", name: "티맵리뷰", description: "카카오톡 문의" },
+      { id: "review-catchtable", name: "캐치테이블", description: "카카오톡 문의" }
     ]
   },
   {
@@ -191,7 +189,7 @@ const CATALOG = [
         id: "sns-instagram",
         name: "인스타",
         children: [
-          { id: "sns-instagram-press", name: "인스타기자단", description: "" }
+          { id: "sns-instagram-press", name: "인스타기자단", description: "카카오톡 문의" }
         ]
       }
     ]
@@ -200,26 +198,26 @@ const CATALOG = [
     id: "production",
     name: "제작",
     children: [
-      { id: "production-homepage", name: "홈페이지", description: "" },
-      { id: "production-landing", name: "랜딩페이지", description: "" },
-      { id: "production-detail", name: "상세페이지", description: "" },
-      { id: "production-reception-ui", name: "전용접수 UI 홈페이지", description: "" }
+      { id: "production-homepage", name: "홈페이지", description: "카카오톡 문의" },
+      { id: "production-landing", name: "랜딩페이지", description: "카카오톡 문의" },
+      { id: "production-detail", name: "상세페이지", description: "카카오톡 문의" },
+      { id: "production-reception-ui", name: "전용접수 UI 홈페이지", description: "카카오톡 문의" }
     ]
   },
   {
     id: "monthly-guarantee",
     name: "월보장",
     children: [
-      { id: "monthly-guarantee-place", name: "플레이스", description: "" },
-      { id: "monthly-guarantee-popular", name: "인기글탭", description: "" },
-      { id: "monthly-guarantee-blog", name: "블로그탭", description: "" }
+      { id: "monthly-guarantee-place", name: "플레이스", description: "카카오톡 문의" },
+      { id: "monthly-guarantee-popular", name: "인기글탭", description: "카카오톡 문의" },
+      { id: "monthly-guarantee-blog", name: "블로그탭", description: "카카오톡 문의" }
     ]
   },
   {
     id: "viral",
     name: "바이럴",
     children: [
-      { id: "viral-branding-blog", name: "브랜딩 블로그 관리 대행", description: "" }
+      { id: "viral-branding-blog", name: "브랜딩 블로그 관리 대행", description: "카카오톡 문의" }
     ]
   },
   {
