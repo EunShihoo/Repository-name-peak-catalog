@@ -9,12 +9,12 @@
       { id, name, children: [...] }
 
    2) 상품 (설명 텍스트, 클릭하면 오른쪽에 상세 패널)
-      { id, name, description: "설명 텍스트", action: "kakao" }
-      → action: "kakao"를 넣으면 상세패널 하단에 "카카오톡으로 문의하기" 버튼이 생깁니다.
-        (아래 LINKS의 카카오톡 링크로 새 탭 이동, 없으면 ID 복사)
-        action을 안 넣으면 버튼 없이 설명만 보여줍니다.
-        ※ 리워드/블로그/카페 배포는 개별 상품 버튼 대신, 카테고리 화면
-          상단에 뜨는 "리워드스페이스/review-space 가입하기" 배너로 안내합니다.
+      { id, name, description: "설명 텍스트" }
+      → 카카오톡 문의는 개별 상품 버튼이 아니라, 화면 우측 하단에
+        항상 떠 있는 고정 "카톡 문의" 버튼 하나로 통일했습니다.
+        (아래 LINKS의 카카오톡 정보만 채우면 그 버튼에 자동 반영됨)
+        ※ 리워드/블로그/카페 배포는 카테고리 화면 상단에 뜨는
+          "리워드스페이스/review-space 가입하기" 배너로 안내합니다.
           (아래 CATALOG의 categoryAction 필드 참고)
 
    3) 게시판 (하이퍼링크 리스트, 클릭하면 링크 목록 화면으로 이동)
@@ -29,11 +29,11 @@
    자동으로 반영됩니다. (VS Code에서 이 부분만 수정하면 돼요)
    ------------------------------------------------------------ */
 const LINKS = {
-  rewardSpace: "https://rewardspace.kr/", // ← 리워드스페이스 회원가입 링크 입력
+  rewardSpace: "", // ← 리워드스페이스 회원가입 링크 입력
   rewardReferralId: "asisay10", // ← 리워드스페이스 가입 시 입력할 추천인 아이디
-  reviewSpace: "https://review-space.kr/r/dmstlgn", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
-  kakaoUrl: "https://open.kakao.com/o/snn5zjIi",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
-  kakaoId: "asisay10"      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
+  reviewSpace: "", // ← review-space 회원가입 링크 (추천인 코드 포함) 입력
+  kakaoUrl: "",    // ← 카카오톡 오픈채팅/상담 링크 (있으면 클릭 시 새 탭으로 이동)
+  kakaoId: ""      // ← 카카오톡 ID (kakaoUrl이 비어있으면 클릭 시 이 ID를 복사해줌)
 };
 
 const CATALOG = [
@@ -95,10 +95,10 @@ const CATALOG = [
     id: "review",
     name: "리뷰",
     children: [
-      { id: "review-clip", name: "클립리뷰", description: "✅ 콘텐츠 형태 : 네이버 클립 숏폼 콘텐츠 배포<br>✅ 활용 : 업체·플레이스·브랜드·상품 홍보 등<br>✅ 방식 : 슬라이드 영상 또는 제공된 영상으로 진행", action: "kakao" },
-      { id: "review-kakaomap", name: "카카오맵리뷰", description: "", action: "kakao" },
-      { id: "review-tmap", name: "티맵리뷰", description: "", action: "kakao" },
-      { id: "review-catchtable", name: "캐치테이블", description: "", action: "kakao" }
+      { id: "review-clip", name: "클립리뷰", description: "✅ 콘텐츠 형태 : 네이버 클립 숏폼 콘텐츠 배포<br>✅ 활용 : 업체·플레이스·브랜드·상품 홍보 등<br>✅ 방식 : 슬라이드 영상 또는 제공된 영상으로 진행" },
+      { id: "review-kakaomap", name: "카카오맵리뷰", description: "" },
+      { id: "review-tmap", name: "티맵리뷰", description: "" },
+      { id: "review-catchtable", name: "캐치테이블", description: "" }
     ]
   },
   {
@@ -109,26 +109,26 @@ const CATALOG = [
         id: "sns-danggeun",
         name: "당근",
         children: [
-          { id: "sns-danggeun-local", name: "동네생활배포", description: "동네 인증 실계정으로 업체 후기·정보글을 배포해드립니다.<br>자연스러운 노출로 잠재고객 유입 + 플레이스 지수 상승까지", action: "kakao" },
-          { id: "sns-danggeun-favorite", name: "찜/단골맺기", description: "실제 활동 계정으로 매장을 찜하고 단골로 등록해드립니다.<br>찜·단골 수 증가로 플레이스 지수 상승 + 신규 고객에게 신뢰도 어필까지", action: "kakao" },
-          { id: "sns-danggeun-buzz", name: "버즈프로필 후기", description: "실제 이용 고객처럼, 진정성 있는 리뷰로 매장을 채워드립니다.<br>후기 수 증가로 신뢰도 상승 + 플레이스 노출 순위까지 함께 관리", action: "kakao" }
+          { id: "sns-danggeun-local", name: "동네생활배포", description: "동네 인증 실계정으로 업체 후기·정보글을 배포해드립니다.<br>자연스러운 노출로 잠재고객 유입 + 플레이스 지수 상승까지" },
+          { id: "sns-danggeun-favorite", name: "찜/단골맺기", description: "실제 활동 계정으로 매장을 찜하고 단골로 등록해드립니다.<br>찜·단골 수 증가로 플레이스 지수 상승 + 신규 고객에게 신뢰도 어필까지" },
+          { id: "sns-danggeun-buzz", name: "버즈프로필 후기", description: "실제 이용 고객처럼, 진정성 있는 리뷰로 매장을 채워드립니다.<br>후기 수 증가로 신뢰도 상승 + 플레이스 노출 순위까지 함께 관리" }
         ]
       },
       {
         id: "sns-china",
         name: "중화권 (샤오홍슈)",
         children: [
-          { id: "sns-china-random", name: "< 베이직 ><br>최소10팀<br>팔로워 랜덤", description: "<맛집전용> 초기 후기 수량 확보 및 매장 방문 바이럴에 최적화된 기초 상품", action: "kakao" },
-          { id: "sns-china-1k", name: "< 부티끄 ><br>10팀고정<br>팔로워랜덤", description: "부담 없는 예산으로 다수 계정에 확산시키는 보편적 바이럴 패키지 · 자연스러운 유저 리뷰 형성 및 해시태그 축적", action: "kakao" },
-          { id: "sns-china-10k", name: "< 스탠다드 ><br>최소5팀<br>팔로워1,000명이상", description: "KOC 및 마이크로 KOL 중심 구성 · 검색 키워드 상위 노출 유도 및 타깃 유저 접점 강력 강화", action: "kakao" },
-          { id: "sns-china-boutique", name: "< 프리미엄 ><br>최소5팀<br>팔로워10,000명이상", description: "중형 KOL 기반 패키지 · 고품질 콘텐츠 제작, 높은 조회수 확보 및 브랜딩 파급력 대폭 확산", action: "kakao" }
+          { id: "sns-china-random", name: "< 베이직 ><br>최소10팀<br>팔로워 랜덤", description: "<맛집전용> 초기 후기 수량 확보 및 매장 방문 바이럴에 최적화된 기초 상품" },
+          { id: "sns-china-1k", name: "< 부티끄 ><br>10팀고정<br>팔로워랜덤", description: "부담 없는 예산으로 다수 계정에 확산시키는 보편적 바이럴 패키지 · 자연스러운 유저 리뷰 형성 및 해시태그 축적" },
+          { id: "sns-china-10k", name: "< 스탠다드 ><br>최소5팀<br>팔로워1,000명이상", description: "KOC 및 마이크로 KOL 중심 구성 · 검색 키워드 상위 노출 유도 및 타깃 유저 접점 강력 강화" },
+          { id: "sns-china-boutique", name: "< 프리미엄 ><br>최소5팀<br>팔로워10,000명이상", description: "중형 KOL 기반 패키지 · 고품질 콘텐츠 제작, 높은 조회수 확보 및 브랜딩 파급력 대폭 확산" }
         ]
       },
       {
         id: "sns-instagram",
         name: "인스타",
         children: [
-          { id: "sns-instagram-press", name: "인스타기자단", description: "", action: "kakao" }
+          { id: "sns-instagram-press", name: "인스타기자단", description: "" }
         ]
       }
     ]
@@ -137,26 +137,26 @@ const CATALOG = [
     id: "production",
     name: "제작",
     children: [
-      { id: "production-homepage", name: "홈페이지", description: "", action: "kakao" },
-      { id: "production-landing", name: "랜딩페이지", description: "", action: "kakao" },
-      { id: "production-detail", name: "상세페이지", description: "", action: "kakao" },
-      { id: "production-reception-ui", name: "전용접수 UI 홈페이지", description: "", action: "kakao" }
+      { id: "production-homepage", name: "홈페이지", description: "" },
+      { id: "production-landing", name: "랜딩페이지", description: "" },
+      { id: "production-detail", name: "상세페이지", description: "" },
+      { id: "production-reception-ui", name: "전용접수 UI 홈페이지", description: "" }
     ]
   },
   {
     id: "monthly-guarantee",
     name: "월보장",
     children: [
-      { id: "monthly-guarantee-place", name: "플레이스", description: "", action: "kakao" },
-      { id: "monthly-guarantee-popular", name: "인기글탭", description: "", action: "kakao" },
-      { id: "monthly-guarantee-blog", name: "블로그탭", description: "", action: "kakao" }
+      { id: "monthly-guarantee-place", name: "플레이스", description: "" },
+      { id: "monthly-guarantee-popular", name: "인기글탭", description: "" },
+      { id: "monthly-guarantee-blog", name: "블로그탭", description: "" }
     ]
   },
   {
     id: "viral",
     name: "바이럴",
     children: [
-      { id: "viral-branding-blog", name: "브랜딩 블로그 관리 대행", description: "", action: "kakao" }
+      { id: "viral-branding-blog", name: "브랜딩 블로그 관리 대행", description: "" }
     ]
   },
   {
@@ -188,8 +188,8 @@ const detailPanel = document.getElementById('detailPanel');
 const detailPath = document.getElementById('detailPath');
 const detailName = document.getElementById('detailName');
 const detailDesc = document.getElementById('detailDesc');
-const detailAction = document.getElementById('detailAction');
 const detailClose = document.getElementById('detailClose');
+const floatingKakao = document.getElementById('floatingKakao');
 
 function currentChildren(){
   if(path.length === 0) return CATALOG;
@@ -345,12 +345,20 @@ function renderGrid(){
 
   gridContainer.appendChild(grid);
 
-  if(current && current.categoryAction){
-    gridContainer.appendChild(buildCategoryCta(current.categoryAction));
+  const inherited = inheritedCategoryAction();
+  if(inherited){
+    gridContainer.appendChild(buildCategoryCta(inherited));
   }
 }
 
 /* ---------- 카테고리 화면 하단 가입 유도 배너 ---------- */
+function inheritedCategoryAction(){
+  for(let i = path.length - 1; i >= 0; i--){
+    if(path[i].categoryAction) return path[i].categoryAction;
+  }
+  return null;
+}
+
 const CTA_COPY = {
   rewardSpace: {
     eyebrow: "PEAK · REWARD SPACE",
@@ -434,30 +442,20 @@ function renderBoard(node){
   gridContainer.appendChild(list);
 }
 
-/* ---------- 액션 버튼 (가입하러 가기 / 카톡 문의) ---------- */
-function renderAction(node){
-  detailAction.innerHTML = '';
-  if(!node.action) return;
-
-  const btn = document.createElement('button');
-  btn.className = 'detail-action-btn';
-
-  if(node.action === 'kakao'){
-    btn.textContent = '카카오톡으로 문의하기 ↗';
-    btn.addEventListener('click', () => {
-      if(LINKS.kakaoUrl){
-        window.open(LINKS.kakaoUrl, '_blank', 'noopener,noreferrer');
-      } else if(LINKS.kakaoId){
-        navigator.clipboard.writeText(LINKS.kakaoId)
-          .then(() => alert('카카오톡 ID(' + LINKS.kakaoId + ')가 복사되었어요.'))
-          .catch(() => alert('카카오톡 ID: ' + LINKS.kakaoId));
-      } else {
-        alert('카카오톡 정보가 아직 등록되지 않았어요. script.js 상단 LINKS 값을 채워주세요.');
-      }
-    });
+/* ---------- 카카오톡 문의 (화면 우측 하단 고정 버튼) ---------- */
+function openKakao(){
+  if(LINKS.kakaoUrl){
+    window.open(LINKS.kakaoUrl, '_blank', 'noopener,noreferrer');
+  } else if(LINKS.kakaoId){
+    navigator.clipboard.writeText(LINKS.kakaoId)
+      .then(() => alert('카카오톡 ID(' + LINKS.kakaoId + ')가 복사되었어요.'))
+      .catch(() => alert('카카오톡 ID: ' + LINKS.kakaoId));
+  } else {
+    alert('카카오톡 정보가 아직 등록되지 않았어요. script.js 상단 LINKS 값을 채워주세요.');
   }
-
-  detailAction.appendChild(btn);
+}
+if(floatingKakao){
+  floatingKakao.addEventListener('click', openKakao);
 }
 
 function openDetail(node){
@@ -468,8 +466,6 @@ function openDetail(node){
   const hasDesc = node.description && node.description.trim().length > 0;
   detailDesc.innerHTML = hasDesc ? node.description : '아직 설명이 입력되지 않았어요.';
   detailDesc.classList.toggle('placeholder', !hasDesc);
-
-  renderAction(node);
 
   overlay.classList.add('show');
   detailPanel.classList.add('show');
